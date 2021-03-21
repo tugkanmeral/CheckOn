@@ -1,0 +1,20 @@
+.ol-map {
+  min-width: 600px;
+  min-height: 500px;
+  margin: 50px;
+  height: 500px;
+  width: "100%";
+}
+.ol-control {
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 4px;
+  padding: 2px;
+  width: fit-content;
+}
+.ol-full-screen {
+  top: 0.5em;
+  right: 0.5em;
+}
+/* .ol-attribution {
+  display: none;
+} */
