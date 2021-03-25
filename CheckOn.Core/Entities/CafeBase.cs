@@ -9,7 +9,7 @@ namespace CheckOn.Core.Entities
         public string Name { get; set; }
         public double? Latitude { get; set; }
         public double? Longitude { get; set; }
-        public double Fulness { get; set; }
+        public double Occupancy { get; set; }
         public string Address { get; set; }
     }
 }

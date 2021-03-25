@@ -15,12 +15,14 @@ namespace Phoenix.Proxy
         protected override object Invoke(MethodInfo targetMethod, object[] args)
         {
             var customAttrs = targetMethod.CustomAttributes;
-            var logAspect = customAttrs.Any(att => att.AttributeType == typeof(LogAspect));
+            var logAspect = customAttrs.FirstOrDefault(att => att.AttributeType == typeof(LogAspect));
 
-            if (logAspect)
+            if (logAspect != null)
+            {
                 Console.WriteLine($"{DateTime.Now} Before {targetMethod.Name} run");
+            }
 
-            object? result = null;
+            object result;
             try
             {
                 result = targetMethod.Invoke(_decorated, args);
@@ -28,10 +30,8 @@ namespace Phoenix.Proxy
             catch (Exception ex)
             {
                 Console.WriteLine($"{DateTime.Now} Exception: {ex.Message}");
+                result = null;
             }
-
-            if (logAspect)
-                Console.WriteLine($"{DateTime.Now} After {targetMethod.Name} run");
 
             return result;
         }

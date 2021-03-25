@@ -11,21 +11,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{C9BC2B81-CB43-4047-A332-3480035168D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckOn.Core", "CheckOn.Core\CheckOn.Core.csproj", "{F4145573-A210-4CD9-8F18-58202BEE8A4D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckOn.Core", "CheckOn.Core\CheckOn.Core.csproj", "{F4145573-A210-4CD9-8F18-58202BEE8A4D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckOn.Business", "CheckOn.Business\CheckOn.Business.csproj", "{4A8EBA6C-E180-4471-A01D-DB80FD1C38AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckOn.Business", "CheckOn.Business\CheckOn.Business.csproj", "{4A8EBA6C-E180-4471-A01D-DB80FD1C38AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckOn.Business.Abstract", "CheckOn.Business.Interface\CheckOn.Business.Abstract.csproj", "{3E91D594-C5CE-416D-8871-08813280FCA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckOn.Business.Abstract", "CheckOn.Business.Interface\CheckOn.Business.Abstract.csproj", "{3E91D594-C5CE-416D-8871-08813280FCA9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckOn.DataAccess.Abstract", "CheckOn.DataAccess.Interface\CheckOn.DataAccess.Abstract.csproj", "{4A616996-08DD-4DDC-9225-701B6A5EE908}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckOn.DataAccess.Abstract", "CheckOn.DataAccess.Interface\CheckOn.DataAccess.Abstract.csproj", "{4A616996-08DD-4DDC-9225-701B6A5EE908}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckOn.DataAccess", "CheckOn.DataAccess\CheckOn.DataAccess.csproj", "{CD1803CF-F0FE-4B77-AC5D-0D03E767533B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckOn.DataAccess", "CheckOn.DataAccess\CheckOn.DataAccess.csproj", "{CD1803CF-F0FE-4B77-AC5D-0D03E767533B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckOn.DataAccess.Entities", "CheckOn.DataAccess.Entities\CheckOn.DataAccess.Entities.csproj", "{95FCDF7B-E76C-49C4-A74C-92E0ADD436DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckOn.DataAccess.Entities", "CheckOn.DataAccess.Entities\CheckOn.DataAccess.Entities.csproj", "{95FCDF7B-E76C-49C4-A74C-92E0ADD436DB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Phoenix", "Phoenix\Phoenix.csproj", "{492E62E8-ACF7-4AA5-81E4-3F2A20134DA5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckOn.WebApp", "CheckOn.WebApp\CheckOn.WebApp.csproj", "{51460E2C-DE2F-458C-A151-E630EE2717D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckOn.WebApp", "CheckOn.WebApp\CheckOn.WebApp.csproj", "{51460E2C-DE2F-458C-A151-E630EE2717D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckOn.Business.Objects", "CheckOn.Business.Objects\CheckOn.Business.Objects.csproj", "{2360A676-E961-4A14-8E44-D9F9D53152F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,6 +67,10 @@ Global
 		{51460E2C-DE2F-458C-A151-E630EE2717D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51460E2C-DE2F-458C-A151-E630EE2717D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51460E2C-DE2F-458C-A151-E630EE2717D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2360A676-E961-4A14-8E44-D9F9D53152F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2360A676-E961-4A14-8E44-D9F9D53152F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2360A676-E961-4A14-8E44-D9F9D53152F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2360A676-E961-4A14-8E44-D9F9D53152F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,6 +84,7 @@ Global
 		{95FCDF7B-E76C-49C4-A74C-92E0ADD436DB} = {19080B83-B54C-4EB1-962C-D6CF0AD890C6}
 		{492E62E8-ACF7-4AA5-81E4-3F2A20134DA5} = {C9BC2B81-CB43-4047-A332-3480035168D7}
 		{51460E2C-DE2F-458C-A151-E630EE2717D7} = {0868C241-C54D-4668-AF91-CFA4CE54D8C5}
+		{2360A676-E961-4A14-8E44-D9F9D53152F8} = {026632E3-3204-410F-9EB6-BE6847C91DA0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {92CD6757-1A77-4C6C-8D13-839EF14D604E}

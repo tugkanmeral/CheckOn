@@ -1,5 +1,7 @@
 ﻿using CheckOn.Business.Abstract;
+using CheckOn.Core.Data;
 using CheckOn.DataAccess.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,6 +14,7 @@ namespace CheckOn.WebApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = UserRoleNames.USER)]
     public class CafesController : ControllerBase
     {
         ICafeService _cafeService;
@@ -33,12 +36,6 @@ namespace CheckOn.WebApp.Controllers
         public Cafe Get(int id)
         {
             return _cafeService.Get(c => c.Id == id);
-        }
-
-        // POST api/<CafesController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
         }
 
         // PUT api/<CafesController>/5

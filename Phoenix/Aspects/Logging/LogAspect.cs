@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Phoenix.Aspects.Logging
 {
-    [AttributeUsage((AttributeTargets.Interface | AttributeTargets.Class | AttributeTargets.Method), AllowMultiple = false)]
+    [AttributeUsage((AttributeTargets.Interface | AttributeTargets.Class | AttributeTargets.Method | AttributeTargets.Constructor), AllowMultiple = false)]
     public class LogAspect : Attribute
     {
     }

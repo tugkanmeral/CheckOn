@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CheckOn.Business.Interface\CheckOn.Business.Abstract.csproj" />
+    <ProjectReference Include="..\CheckOn.Business.Objects\CheckOn.Business.Objects.csproj" />
     <ProjectReference Include="..\CheckOn.DataAccess.Entities\CheckOn.DataAccess.Entities.csproj" />
     <ProjectReference Include="..\CheckOn.DataAccess.Interface\CheckOn.DataAccess.Abstract.csproj" />
     <ProjectReference Include="..\CheckOn.DataAccess\CheckOn.DataAccess.csproj" />

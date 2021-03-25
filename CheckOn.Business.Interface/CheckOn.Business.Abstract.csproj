@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CheckOn.Business.Objects\CheckOn.Business.Objects.csproj" />
     <ProjectReference Include="..\CheckOn.DataAccess.Entities\CheckOn.DataAccess.Entities.csproj" />
   </ItemGroup>
 
