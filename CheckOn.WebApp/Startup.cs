@@ -51,6 +51,8 @@ namespace CheckOn.WebApp
                 };
             });
 
+            services.AddAutoMapper(typeof(Startup));
+
             IoCModule.Register(services);
         }
 

@@ -16,4 +16,8 @@
     <ProjectReference Include="..\CheckOn.DataAccess\CheckOn.DataAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="AutoMapper\" />
+  </ItemGroup>
+
 </Project>

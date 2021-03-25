@@ -1,4 +1,5 @@
-﻿using CheckOn.Business.Abstract;
+﻿using AutoMapper;
+using CheckOn.Business.Abstract;
 using CheckOn.Business.Objects.Auth;
 using CheckOn.Core.Data;
 using CheckOn.DataAccess.Entities;
@@ -17,16 +18,20 @@ namespace CheckOn.WebApp.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        IUserAccountService userAccountService;
-        public UsersController(IUserAccountService userAccountService)
+        IUserAccountService _userAccountService;
+        readonly IMapper _mapper;
+        public UsersController(IUserAccountService userAccountService, IMapper mapper)
         {
-            this.userAccountService = userAccountService;
+            _userAccountService = userAccountService;
+            _mapper = mapper;
         }
 
         [HttpPost]
         public void Post([FromBody] UserModel user)
         {
-            userAccountService.AddUserAccount(new UserAccountBO() { Email = user.Email, Password = user.Password, Role = UserRoleNames.USER });
+            UserAccountBO userAccount = _mapper.Map<UserAccountBO>(user);
+            userAccount.Role = UserRoleNames.USER;
+            _userAccountService.AddUserAccount(userAccount);
         }
     }
 }
