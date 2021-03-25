@@ -3,6 +3,7 @@ using CheckOn.Core.Data;
 using CheckOn.DataAccess.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Phoenix.Utils.HttpRequest;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,37 +18,27 @@ namespace CheckOn.WebApp.Controllers
     [Authorize(Roles = UserRoleNames.USER)]
     public class CafesController : ControllerBase
     {
-        ICafeService _cafeService;
+        ICafeService cafeService;
 
         public CafesController(ICafeService cafeService)
         {
-            _cafeService = cafeService;
+            this.cafeService = cafeService;
         }
 
-        // GET: api/<CafesController>
         [HttpGet]
-        public IEnumerable<Cafe> Get()
+        public async Task<ResponseBase<IEnumerable<Cafe>>> Get()
         {
-            return _cafeService.GetList();
+            Task<List<Cafe>> cafesTask = cafeService.GetList();
+            IEnumerable<Cafe> cafes = await cafesTask;
+            return new SuccessResponse<IEnumerable<Cafe>>(cafes);
         }
 
-        // GET api/<CafesController>/5
         [HttpGet("{id}")]
-        public Cafe Get(int id)
+        public async Task<ResponseBase<Cafe>> Get(int id)
         {
-            return _cafeService.Get(c => c.Id == id);
-        }
-
-        // PUT api/<CafesController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<CafesController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            Task<Cafe> cafeTask = cafeService.Get(c => c.Id == id);
+            Cafe cafe = await cafeTask;
+            return new SuccessResponse<Cafe>(cafe);
         }
     }
 }

@@ -2,12 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace CheckOn.Business.Abstract
 {
     public interface IUserAccountService
     {
-        UserAccountBO CheckUserAccount(string email, string password);
+        Task<UserAccountBO> CheckUserAccount(string email, string password);
         void AddUserAccount(UserAccountBO userAccount);
     }
 }

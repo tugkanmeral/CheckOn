@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace CheckOn.Business
 {
@@ -23,11 +24,12 @@ namespace CheckOn.Business
             this.userRepository = userRepository;
         }
 
-        public UserAccountBO CheckUserAccount(string email, string password)
+        public async Task<UserAccountBO> CheckUserAccount(string email, string password)
         {
             var encryptedEmail = cryptoService.Encrypt(email);
             var encryptedPassword = cryptoService.Encrypt(password);
-            User user = userRepository.Get(u => u.Email == encryptedEmail && u.Password == encryptedPassword);
+            Task<User> userTask = userRepository.GetAsync(u => u.Email == encryptedEmail && u.Password == encryptedPassword);
+            User user = await userTask;
 
             if (user != null)
                 return new UserAccountBO() { Email = user.Email, Role = UserRoleNames.GetRoleName(user.RoleId) };
@@ -37,7 +39,7 @@ namespace CheckOn.Business
 
         public void AddUserAccount(UserAccountBO userAccount)
         {
-            userRepository.Add(new User() { Email = cryptoService.Encrypt(userAccount.Email), Password = cryptoService.Encrypt(userAccount.Password), RoleId = (int)UserRoles.USER});
+            userRepository.AddAsync(new User() { Email = cryptoService.Encrypt(userAccount.Email), Password = cryptoService.Encrypt(userAccount.Password), RoleId = (int)UserRoles.USER});
         }
 
     }

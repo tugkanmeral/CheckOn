@@ -22,7 +22,7 @@ namespace CheckOn.WebApp.Controllers
         {
             this.userAccountService = userAccountService;
         }
-        // POST api/<UsersController>
+
         [HttpPost]
         public void Post([FromBody] UserModel user)
         {

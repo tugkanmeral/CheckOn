@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
-
+using System.Threading.Tasks;
 
 namespace Phoenix.LayerBases.DataAccess
 {
@@ -18,33 +18,33 @@ namespace Phoenix.LayerBases.DataAccess
             _context = context;
         }
 
-        public virtual void Add(TEntity entity)
+        public virtual void AddAsync(TEntity entity)
         {
             var addedEntity = _context.Entry(entity);
             addedEntity.State = EntityState.Added;
-            _context.SaveChanges();
+            _context.SaveChangesAsync();
         }
 
-        public virtual void Delete(TEntity entity)
+        public virtual void DeleteAsync(TEntity entity)
         {
             var deletedEntity = _context.Entry(entity);
             deletedEntity.State = EntityState.Deleted;
-            _context.SaveChanges();
+            _context.SaveChangesAsync();
         }
 
-        public virtual TEntity Get(Expression<Func<TEntity, bool>> filter)
+        public virtual Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> filter)
         {
-            return _context.Set<TEntity>().Where(filter).FirstOrDefault();
+            return _context.Set<TEntity>().Where(filter).FirstOrDefaultAsync();
         }
 
-        public virtual IEnumerable<TEntity> GetList(Expression<Func<TEntity, bool>> filter = null)
+        public virtual Task<List<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> filter = null)
         {
             return filter == null
-                ? _context.Set<TEntity>().ToList()
-                : _context.Set<TEntity>().Where(filter).ToList();
+                ? _context.Set<TEntity>().ToListAsync()
+                : _context.Set<TEntity>().Where(filter).ToListAsync();
         }
 
-        public virtual void Update(TEntity entity)
+        public virtual void UpdateAsync(TEntity entity)
         {
             var updatedEntity = _context.Entry(entity);
             updatedEntity.State = EntityState.Modified;

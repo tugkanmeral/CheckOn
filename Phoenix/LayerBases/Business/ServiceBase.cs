@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Phoenix.LayerBases.Business
 {
@@ -19,28 +20,28 @@ namespace Phoenix.LayerBases.Business
 
         public void Add(T entity)
         {
-            _repository.Add(entity);
+            _repository.AddAsync(entity);
         }
 
         [LogAspect]
-        public T Get(Expression<Func<T, bool>> filter)
+        public Task<T> Get(Expression<Func<T, bool>> filter)
         {
-            return _repository.Get(filter);
+            return _repository.GetAsync(filter);
         }
 
-        public IEnumerable<T> GetList(Expression<Func<T, bool>> filter)
+        public Task<List<T>> GetList(Expression<Func<T, bool>> filter)
         {
-            return _repository.GetList(filter);
+            return _repository.GetListAsync(filter);
         }
 
         public void Update(T entity)
         {
-            _repository.Update(entity);
+            _repository.UpdateAsync(entity);
         }
 
         public void Delete(T entity)
         {
-            _repository.Delete(entity);
+            _repository.DeleteAsync(entity);
         }
     }
 }
