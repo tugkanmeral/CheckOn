@@ -1,0 +1,61 @@
+body {
+  margin: 0px !important;
+}
+
+#root {
+  display: flex;
+  height: 100vh;
+  background-color: #f7f9fbff;
+}
+
+#site-container {
+  flex: 1;
+  display: flex;
+  padding: 10px;
+}
+
+.tm-space {
+  padding: 15px;
+  margin: 10px;
+}
+
+.tm-card {
+  border-radius: 5px;
+  padding: 15px;
+  margin: 10px;
+}
+
+.tm-xs {
+  width: 558px;
+}
+.tm-sm {
+  width: 768px;
+}
+.tm-md {
+  width: 992px;
+}
+.tm-lg {
+  width: 1200px;
+}
+.tm-input-xs{
+  width: 450px;
+}
+
+.tm-shadow {
+  -webkit-box-shadow: 9px 10px 17px -6px rgba(0, 0, 0, 0.48);
+  -moz-box-shadow: 9px 10px 17px -6px rgba(0, 0, 0, 0.48);
+  box-shadow: 9px 10px 17px -6px rgba(0, 0, 0, 0.48);
+}
+
+/* CSS HEX */
+/* 
+--cultured: #f7f9fbff;
+--maximum-yellow-red: #eeb544ff;
+--blue-sapphire: #28657bff;
+--imperial-red: #f02d3aff;
+--timberwolf: #cfdbd5ff;
+--alabaster: #e8eddfff;
+--maize-crayola: #f5cb5cff;
+--eerie-black: #242423ff;
+--jet: #333533ff; 
+*/

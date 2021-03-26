@@ -1,4 +1,5 @@
-﻿using CheckOn.Business.Abstract;
+﻿using AutoMapper;
+using CheckOn.Business.Abstract;
 using CheckOn.Business.Objects.Auth;
 using CheckOn.Core.Data;
 using CheckOn.DataAccess.Abstract;
@@ -16,30 +17,34 @@ namespace CheckOn.Business
 {
     public class UserAccountManager : IUserAccountService
     {
-        ICryptoService cryptoService;
-        IUserRepository userRepository;
-        public UserAccountManager(ICryptoService cryptoService, IUserRepository userRepository)
+        ICryptoService _cryptoService;
+        IUserRepository _userRepository;
+        IMapper _mapper;
+        public UserAccountManager(ICryptoService cryptoService, IUserRepository userRepository, IMapper mapper)
         {
-            this.cryptoService = cryptoService;
-            this.userRepository = userRepository;
+            _cryptoService = cryptoService;
+            _userRepository = userRepository;
+            _mapper = mapper;
         }
 
         public async Task<UserAccountBO> CheckUserAccount(string email, string password)
         {
-            var encryptedEmail = cryptoService.Encrypt(email);
-            var encryptedPassword = cryptoService.Encrypt(password);
-            Task<User> userTask = userRepository.GetAsync(u => u.Email == encryptedEmail && u.Password == encryptedPassword);
+            var encryptedPassword = _cryptoService.Encrypt(password);
+            Task<User> userTask = _userRepository.GetAsync(u => u.Email == email && u.Password == encryptedPassword);
             User user = await userTask;
 
             if (user != null)
-                return new UserAccountBO() { Email = user.Email, Role = UserRoleNames.GetRoleName(user.RoleId) };
+                return _mapper.Map<UserAccountBO>(user);
             else
                 return null;
         }
 
         public void AddUserAccount(UserAccountBO userAccount)
         {
-            userRepository.AddAsync(new User() { Email = cryptoService.Encrypt(userAccount.Email), Password = cryptoService.Encrypt(userAccount.Password), RoleId = (int)UserRoles.USER});
+            User user = _mapper.Map<User>(userAccount);
+            user.RoleId = (int)UserRoles.USER;
+
+            _userRepository.AddAsync(user);
         }
 
     }

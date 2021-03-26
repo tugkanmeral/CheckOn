@@ -1,0 +1,11 @@
+.p-float-label {
+  margin-bottom: 25px;
+}
+
+#login-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 35px;
+}

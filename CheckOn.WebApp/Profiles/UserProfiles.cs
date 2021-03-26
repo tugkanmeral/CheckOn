@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CheckOn.Business.Objects.Auth;
+using CheckOn.DataAccess.Entities;
 using CheckOn.WebApp.Models.Users;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,8 @@ namespace CheckOn.WebApp.Profiles
         public UserProfiles()
         {
             CreateMap<UserModel, UserAccountBO>();
+            CreateMap<UserAccountBO, User>();
+            CreateMap<User, UserAccountBO>();
         }
     }
 }

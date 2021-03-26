@@ -24,12 +24,12 @@ namespace Phoenix.LayerBases.Business
         }
 
         [LogAspect]
-        public Task<T> Get(Expression<Func<T, bool>> filter)
+        public Task<T> GetAsync(Expression<Func<T, bool>> filter)
         {
             return _repository.GetAsync(filter);
         }
 
-        public Task<List<T>> GetList(Expression<Func<T, bool>> filter)
+        public Task<List<T>> GetListAsync(Expression<Func<T, bool>> filter)
         {
             return _repository.GetListAsync(filter);
         }

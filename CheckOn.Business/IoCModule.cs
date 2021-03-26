@@ -14,17 +14,17 @@ namespace CheckOn.Business
     {
         public static void Register(IServiceCollection serviceCollection)
         {
-            serviceCollection.RegisterSingleton<ICafeRepository, CafeRepository>();
+            serviceCollection.RegisterTransient<ICafeRepository, CafeRepository>();
             serviceCollection.RegisterScoped<ICafeService, CafeManager>();
 
-            serviceCollection.RegisterSingleton<IUserRepository, UserRepository>();
+            serviceCollection.RegisterTransient<IUserRepository, UserRepository>();
             serviceCollection.RegisterScoped<IUserAccountService, UserAccountManager>();
 
             serviceCollection.RegisterScoped<IAuthenticationService, AuthenticationManager>();
 
             serviceCollection.RegisterSingleton<ICryptoService, CryptoManager>();
 
-            serviceCollection.AddDbContext<CheckOnDatabaseContext>(contextLifetime: ServiceLifetime.Singleton, optionsLifetime: ServiceLifetime.Singleton);
+            serviceCollection.AddDbContext<CheckOnDatabaseContext>(contextLifetime: ServiceLifetime.Transient, optionsLifetime: ServiceLifetime.Transient);
         }
     }
 }

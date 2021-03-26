@@ -15,7 +15,6 @@ namespace CheckOn.WebApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = UserRoleNames.USER)]
     public class CafesController : ControllerBase
     {
         ICafeService cafeService;
@@ -28,7 +27,7 @@ namespace CheckOn.WebApp.Controllers
         [HttpGet]
         public async Task<ResponseBase<IEnumerable<Cafe>>> Get()
         {
-            Task<List<Cafe>> cafesTask = cafeService.GetList();
+            Task<List<Cafe>> cafesTask = cafeService.GetListAsync();
             IEnumerable<Cafe> cafes = await cafesTask;
             return new SuccessResponse<IEnumerable<Cafe>>(cafes);
         }
@@ -36,7 +35,7 @@ namespace CheckOn.WebApp.Controllers
         [HttpGet("{id}")]
         public async Task<ResponseBase<Cafe>> Get(int id)
         {
-            Task<Cafe> cafeTask = cafeService.Get(c => c.Id == id);
+            Task<Cafe> cafeTask = cafeService.GetAsync(c => c.Id == id);
             Cafe cafe = await cafeTask;
             return new SuccessResponse<Cafe>(cafe);
         }

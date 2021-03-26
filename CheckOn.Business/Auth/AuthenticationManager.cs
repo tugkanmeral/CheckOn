@@ -1,5 +1,6 @@
 ﻿using CheckOn.Business.Abstract;
 using CheckOn.Business.Objects.Auth;
+using CheckOn.Core.Data;
 using Microsoft.IdentityModel.Tokens;
 using Phoenix.Utils;
 using System;
@@ -12,10 +13,10 @@ namespace CheckOn.Business
 {
     public class AuthenticationManager : IAuthenticationService
     {
-        ICryptoService cryptoService;
+        ICryptoService _cryptoService;
         public AuthenticationManager(ICryptoService cryptoService)
         {
-            this.cryptoService = cryptoService;
+            _cryptoService = cryptoService;
         }
 
         public string Authenticate(UserAccountBO userAccount)
@@ -26,8 +27,8 @@ namespace CheckOn.Business
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Email, cryptoService.Decrypt(userAccount.Email)),
-                    new Claim(ClaimTypes.Role, userAccount.Role)
+                    new Claim(ClaimTypes.Email, userAccount.Email),
+                    new Claim(ClaimTypes.Role, UserRoleNames.GetRoleName(userAccount.RoleId))
                 }),
                 Expires = DateTime.UtcNow.AddDays(Convert.ToInt32(ConfigGetter.GetSectionFromJson("TokenExpiresDay"))),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)

@@ -8,7 +8,7 @@ import OLPoint from "ol/geom/Point";
 import OlSourceOSM from "ol/source/OSM";
 import OlSourceVector from "ol/source/Vector";
 import { toLonLat, toUserCoordinate } from "ol/proj";
-import "../styles/map.css";
+import "./map.css";
 import Style from "ol/style/Style";
 import Text from "ol/style/Text";
 import Stroke from "ol/style/Stroke";

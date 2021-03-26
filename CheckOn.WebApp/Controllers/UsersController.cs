@@ -16,6 +16,7 @@ namespace CheckOn.WebApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = UserRoleNames.ADMIN)]
     public class UsersController : ControllerBase
     {
         IUserAccountService _userAccountService;
