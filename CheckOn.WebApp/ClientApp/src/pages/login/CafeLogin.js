@@ -8,7 +8,7 @@ import "../../styles/pages/login/cafeLogin.css";
 class CafeLogin extends Component {
   render() {
     return (
-      <div id="cafe-login-page">
+      <div id="cafe-login-page" className="tm-page-container">
         <LoginCard />
       </div>
     );

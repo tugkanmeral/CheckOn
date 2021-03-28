@@ -8,5 +8,6 @@ namespace CheckOn.Business.Abstract
 {
     public interface ICafeService : IService<Cafe>
     {
+        void UpdateCafeOccupancy(int cafeId, double occupancy);
     }
 }

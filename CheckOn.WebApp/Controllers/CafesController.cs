@@ -17,17 +17,17 @@ namespace CheckOn.WebApp.Controllers
     [ApiController]
     public class CafesController : ControllerBase
     {
-        ICafeService cafeService;
+        ICafeService _cafeService;
 
         public CafesController(ICafeService cafeService)
         {
-            this.cafeService = cafeService;
+            _cafeService = cafeService;
         }
 
         [HttpGet]
         public async Task<ResponseBase<IEnumerable<Cafe>>> Get()
         {
-            Task<List<Cafe>> cafesTask = cafeService.GetListAsync();
+            Task<List<Cafe>> cafesTask = _cafeService.GetListAsync();
             IEnumerable<Cafe> cafes = await cafesTask;
             return new SuccessResponse<IEnumerable<Cafe>>(cafes);
         }
@@ -35,7 +35,7 @@ namespace CheckOn.WebApp.Controllers
         [HttpGet("{id}")]
         public async Task<ResponseBase<Cafe>> Get(int id)
         {
-            Task<Cafe> cafeTask = cafeService.GetAsync(c => c.Id == id);
+            Task<Cafe> cafeTask = _cafeService.GetAsync(c => c.Id == id);
             Cafe cafe = await cafeTask;
             return new SuccessResponse<Cafe>(cafe);
         }

@@ -1,0 +1,27 @@
+.loader {
+  border: 1px solid #f3f3f3; /* Light grey */
+  border-top: 2x solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+    border-top: 5px solid#71ad71;
+  }
+  33% {
+    transform: rotate(120deg);
+    border-top: 5px solid #f1cb53;
+  }
+  66% {
+    transform: rotate(240deg);
+    border-top: 5px solid#de4646;
+  }
+  100% {
+    transform: rotate(360deg);
+    border-top: 5px solid #de4646;
+  }
+}

@@ -6,12 +6,23 @@ body {
   display: flex;
   height: 100vh;
   background-color: #f7f9fbff;
+  overflow-y: auto;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 1rem;
+  font-weight: normal;
 }
 
 #site-container {
   flex: 1;
   display: flex;
   padding: 10px;
+}
+
+.tm-page-container {
+  flex: 1;
+  display: flex;
+  height: fit-content;
 }
 
 .tm-space {
@@ -25,37 +36,59 @@ body {
   margin: 10px;
 }
 
-.tm-xs {
-  width: 558px;
-}
-.tm-sm {
-  width: 768px;
-}
-.tm-md {
-  width: 992px;
-}
-.tm-lg {
-  width: 1200px;
-}
-.tm-input-xs{
-  width: 450px;
-}
-
 .tm-shadow {
-  -webkit-box-shadow: 9px 10px 17px -6px rgba(0, 0, 0, 0.48);
-  -moz-box-shadow: 9px 10px 17px -6px rgba(0, 0, 0, 0.48);
-  box-shadow: 9px 10px 17px -6px rgba(0, 0, 0, 0.48);
+  -webkit-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.15);
 }
 
-/* CSS HEX */
-/* 
---cultured: #f7f9fbff;
---maximum-yellow-red: #eeb544ff;
---blue-sapphire: #28657bff;
---imperial-red: #f02d3aff;
---timberwolf: #cfdbd5ff;
---alabaster: #e8eddfff;
---maize-crayola: #f5cb5cff;
---eerie-black: #242423ff;
---jet: #333533ff; 
-*/
+.tm-shadow-high {
+  -webkit-box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.25);
+}
+
+/* For desktop: */
+.tm-col-1 {
+  width: 8.33%;
+}
+.tm-col-2 {
+  width: 16.66%;
+}
+.tm-col-3 {
+  width: 25%;
+}
+.tm-col-4 {
+  width: 33.33%;
+}
+.tm-col-5 {
+  width: 41.66%;
+}
+.tm-col-6 {
+  width: 50%;
+}
+.tm-col-7 {
+  width: 58.33%;
+}
+.tm-col-8 {
+  width: 66.66%;
+}
+.tm-col-9 {
+  width: 75%;
+}
+.tm-col-10 {
+  width: 83.33%;
+}
+.tm-col-11 {
+  width: 91.66%;
+}
+.tm-col-12 {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  /* For mobile phones: */
+  [class*="tm-col-"] {
+    width: 100%;
+  }
+}

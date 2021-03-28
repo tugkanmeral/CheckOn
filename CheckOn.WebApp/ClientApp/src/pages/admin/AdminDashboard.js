@@ -4,7 +4,7 @@ import { setUser } from "../../redux/actions/userAction";
 
 class AdminDashboard extends Component {
   render() {
-    return <div> AdminDashboard </div>;
+    return <div className="tm-page-container"> AdminDashboard </div>;
   }
 }
 const mapDispatchToProps = () => {

@@ -8,7 +8,7 @@ import "../../styles/common.css";
 class CafeDashboard extends Component {
   render() {
     return (
-      <div>
+      <div className="tm-page-container">
         <AuthChecker />
         CafeDashboard
       </div>
