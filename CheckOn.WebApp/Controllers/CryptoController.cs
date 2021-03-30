@@ -1,13 +1,8 @@
-﻿using CheckOn.Business.Abstract;
-using CheckOn.Core.Data;
+﻿using CheckOn.Core.Data;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Phoenix.Utils.HttpRequest;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Phoenix.Utils;
+using Phoenix.Utils.DataSecurity;
 
 namespace CheckOn.WebApp.Controllers
 {
@@ -16,22 +11,22 @@ namespace CheckOn.WebApp.Controllers
     [Authorize(Roles = UserRoleNames.ADMIN)]
     public class CryptoController : ControllerBase
     {
-        ICryptoService _cryptoService;
-        public CryptoController(ICryptoService cryptoService)
-        {
-            _cryptoService = cryptoService;
-        }
-
         [HttpGet("encrypt")]
         public string Encrypt(CryptoModel model)
         {
-            return _cryptoService.Encrypt(model.Decrypted);
+            return Crypto.Encrypt(model.Decrypted, ConfigGetter.GetSectionFromJson("CryptoKey"));
         }
 
         [HttpGet("decrypt")]
         public string Decrypt(CryptoModel model)
         {
-            return _cryptoService.Decrypt(model.Encrypted);
+            return Crypto.Decrypt(model.Encrypted, ConfigGetter.GetSectionFromJson("CryptoKey"));
+        }
+
+        [HttpGet("hash")]
+        public string Hashing(string value)
+        {
+            return Crypto.Sha256(value);
         }
     }
 

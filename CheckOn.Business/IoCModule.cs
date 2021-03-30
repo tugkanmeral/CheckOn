@@ -22,8 +22,6 @@ namespace CheckOn.Business
 
             serviceCollection.RegisterScoped<IAuthenticationService, AuthenticationManager>();
 
-            serviceCollection.RegisterSingleton<ICryptoService, CryptoManager>();
-
             serviceCollection.AddDbContext<CheckOnDatabaseContext>(contextLifetime: ServiceLifetime.Transient, optionsLifetime: ServiceLifetime.Transient);
         }
     }

@@ -13,12 +13,6 @@ namespace CheckOn.Business
 {
     public class AuthenticationManager : IAuthenticationService
     {
-        ICryptoService _cryptoService;
-        public AuthenticationManager(ICryptoService cryptoService)
-        {
-            _cryptoService = cryptoService;
-        }
-
         public string Authenticate(UserAccountBO userAccount)
         {
             var tokenHandler = new JwtSecurityTokenHandler();

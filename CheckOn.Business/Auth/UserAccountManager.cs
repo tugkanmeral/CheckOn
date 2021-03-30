@@ -6,6 +6,7 @@ using CheckOn.DataAccess.Abstract;
 using CheckOn.DataAccess.Entities;
 using Microsoft.IdentityModel.Tokens;
 using Phoenix.Utils;
+using Phoenix.Utils.DataSecurity;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -17,19 +18,17 @@ namespace CheckOn.Business
 {
     public class UserAccountManager : IUserAccountService
     {
-        ICryptoService _cryptoService;
         IUserRepository _userRepository;
         IMapper _mapper;
-        public UserAccountManager(ICryptoService cryptoService, IUserRepository userRepository, IMapper mapper)
+        public UserAccountManager(IUserRepository userRepository, IMapper mapper)
         {
-            _cryptoService = cryptoService;
             _userRepository = userRepository;
             _mapper = mapper;
         }
 
         public async Task<UserAccountBO> CheckUserAccount(string email, string password)
         {
-            var encryptedPassword = _cryptoService.Encrypt(password);
+            var encryptedPassword = Crypto.Encrypt(password, ConfigGetter.GetSectionFromJson("CryptoKey"));
             Task<User> userTask = _userRepository.GetAsync(u => u.Email == email && u.Password == encryptedPassword);
             User user = await userTask;
 

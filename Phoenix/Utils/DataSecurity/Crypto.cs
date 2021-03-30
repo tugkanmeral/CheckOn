@@ -1,26 +1,18 @@
-﻿using CheckOn.Business.Abstract;
-using Phoenix.Utils;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace CheckOn.Business
+namespace Phoenix.Utils.DataSecurity
 {
-    public class CryptoManager : ICryptoService
+    public static class Crypto
     {
-        private string cryptoKey { get; }
-        public CryptoManager()
-        {
-            cryptoKey = ConfigGetter.GetSectionFromJson("CryptoKey");
-        }
-
-        public string Encrypt(string value)
+        public static string Encrypt(string value, string key)
         {
             byte[] data = UTF8Encoding.UTF8.GetBytes(value);
             using MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
 
-            byte[] keys = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(cryptoKey));
+            byte[] keys = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(key));
             using TripleDESCryptoServiceProvider tripDes = new TripleDESCryptoServiceProvider() { Key = keys, Mode = CipherMode.ECB, Padding = PaddingMode.PKCS7 };
 
             ICryptoTransform transform = tripDes.CreateEncryptor();
@@ -28,17 +20,29 @@ namespace CheckOn.Business
             return Convert.ToBase64String(results, 0, results.Length);
         }
 
-        public string Decrypt(string encrytedValue)
+        public static string Decrypt(string encrytedValue, string key)
         {
             byte[] data = Convert.FromBase64String(encrytedValue);
             using MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
 
-            byte[] keys = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(cryptoKey));
+            byte[] keys = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(key));
             using TripleDESCryptoServiceProvider tripDes = new TripleDESCryptoServiceProvider() { Key = keys, Mode = CipherMode.ECB, Padding = PaddingMode.PKCS7 };
 
             ICryptoTransform transform = tripDes.CreateDecryptor();
             byte[] results = transform.TransformFinalBlock(data, 0, data.Length);
             return UTF8Encoding.UTF8.GetString(results);
+        }
+
+        public static string Sha256(string rawData)
+        {   
+            using SHA256 sha256Hash = SHA256.Create();
+            byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(rawData));
+            StringBuilder builder = new StringBuilder();
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                builder.Append(bytes[i].ToString("x2"));
+            }
+            return builder.ToString();
         }
     }
 }
