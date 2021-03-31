@@ -158,7 +158,7 @@ export class CafeList extends Component {
         cafe.occupancy * 100 >= values[0] &&
         cafe.occupancy * 100 < values[1]
     );
-    this.setState({ filteredCafes, page :0 });
+    this.setState({ filteredCafes, page: 0 });
   };
 
   SearchCafeName = (e) => {
@@ -175,7 +175,7 @@ export class CafeList extends Component {
         cafe.occupancy * 100 >= this.state.occupancyRange[0] &&
         cafe.occupancy * 100 < this.state.occupancyRange[1]
     );
-    this.setState({ filteredCafes, page :0 });
+    this.setState({ filteredCafes, page: 0 });
   };
 
   SearchAddress = (e) => {
