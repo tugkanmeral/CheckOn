@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-// import LoginCard from "../../components/auth/LoginCard";
 import { setUser } from "../../redux/actions/userAction";
 import { InputText } from "primereact/inputtext";
-import { Password } from "primereact/password";
 import { Button } from "primereact/button";
+import * as AuthService from "../../services/AuthService"
 
 import "../../styles/pages/login/cafeLogin.css";
 import backgroundImage from "../../assets/cafe_login.jpg";
@@ -30,6 +29,7 @@ class CafeLogin extends Component {
           <span className="input-container">
             <label htmlFor="email">E-mail</label>
             <InputText
+              className="login-input"
               id="email"
               value={this.state.email}
               onChange={(e) => this.setState({ email: e.target.value })}
@@ -37,19 +37,27 @@ class CafeLogin extends Component {
           </span>
           <span className="input-container">
             <label htmlFor="pass">Şifre</label>
-            <Password
+            <InputText
+              type="password"
+              style={{ width: "100%" }}
               id="pass"
               value={this.state.pass}
               onChange={(e) => this.setState({ pass: e.target.value })}
-              feedback={false}
-              toggleMask
             />
           </span>
-          <Button className="p-button-secondary p-button-outlined login-button" label="Giriş yap" />
+          <Button
+            className="p-button-primary p-button-outlined login-button"
+            label="Giriş yap"
+            onClick={this.Login}
+          />
         </div>
       </div>
     );
   }
+
+  Login = () => {
+    AuthService.CafeLogin(this.state.email, this.state.pass);
+  };
 }
 const mapDispatchToProps = () => {
   return {

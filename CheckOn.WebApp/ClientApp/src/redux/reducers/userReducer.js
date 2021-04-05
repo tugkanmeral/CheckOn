@@ -4,6 +4,7 @@ const userReducer = (
   state = {
     id: null,
     email: null,
+    token: null
   },
   action
 ) => {
