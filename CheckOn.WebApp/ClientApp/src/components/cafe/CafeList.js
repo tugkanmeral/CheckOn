@@ -18,7 +18,7 @@ export class CafeList extends Component {
       cafes: [],
       filteredCafes: [],
       page: 0, // zero-based
-      numberOfItem: 6,
+      numberOfItem: 5,
       cafeNameFilter: "",
       cafeAddress: "",
       occupancyRange: [0, 100],
