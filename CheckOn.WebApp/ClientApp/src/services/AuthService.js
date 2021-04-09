@@ -6,5 +6,5 @@ export function CafeLogin(_email, _password) {
     Password: _password,
   };
   // ApiCaller.Post("api/auth", body)
-  alert("AuthService -> CafeLogin")
+  // alert("AuthService -> CafeLogin")
 }
