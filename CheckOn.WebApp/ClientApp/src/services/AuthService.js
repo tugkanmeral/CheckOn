@@ -6,7 +6,6 @@ export function CafeLogin(_email, _password) {
     Password: _password,
   };
   ApiCaller.Post("api/auth", body)
-  // alert("AuthService -> CafeLogin")
 }
 
 export function UserLogin(_email, _password) {
@@ -15,5 +14,12 @@ export function UserLogin(_email, _password) {
     Password: _password,
   };
   ApiCaller.Post("api/auth", body)
-  // alert("AuthService -> CafeLogin")
+}
+
+export function AdminLogin(_email, _password) {
+  var body = {
+    Email: _email,
+    Password: _password,
+  };
+  ApiCaller.Post("api/auth", body)
 }
