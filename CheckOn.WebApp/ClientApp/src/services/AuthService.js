@@ -13,7 +13,7 @@ export function UserLogin(_email, _password) {
     Email: _email,
     Password: _password,
   };
-  ApiCaller.Post("api/auth", body)
+  ApiCaller.Post("api/auth/login", body)
 }
 
 export function AdminLogin(_email, _password) {
@@ -21,5 +21,5 @@ export function AdminLogin(_email, _password) {
     Email: _email,
     Password: _password,
   };
-  ApiCaller.Post("api/auth", body)
+  ApiCaller.Post("api/auth/adminLogin", body)
 }

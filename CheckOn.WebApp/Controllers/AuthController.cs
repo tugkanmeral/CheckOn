@@ -41,5 +41,22 @@ namespace CheckOn.WebApp.Controllers
 
             return new SuccessResponse<UserAccountBO>(userAccount);
         }
+
+        [HttpPost]
+        public async Task<ResponseBase<UserAccountBO>> AdminLogin([FromBody] LoginModel model)
+        {
+            if (!ModelState.IsValid)
+                return new ErrorResponse<UserAccountBO>("Tüm zorunlu alanları doldurun", StatusCodes.Status401Unauthorized);
+
+            Task<UserAccountBO> userAccountTask = userAccountService.CheckUserAccount(model.Email, model.Password);
+            UserAccountBO userAccount = await userAccountTask;
+
+            if (userAccount == null)
+                return new ErrorResponse<UserAccountBO>("Hatalı kullanıcı bilgileri", StatusCodes.Status401Unauthorized);
+
+            userAccount.Token = authenticationService.Authenticate(userAccount);
+
+            return new SuccessResponse<UserAccountBO>(userAccount);
+        }
     }
 }
